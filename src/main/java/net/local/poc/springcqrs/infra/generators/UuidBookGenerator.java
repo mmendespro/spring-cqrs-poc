@@ -1,4 +1,4 @@
-package net.local.poc.springcqrs.adapters.generators;
+package net.local.poc.springcqrs.infra.generators;
 
 import java.util.UUID;
 

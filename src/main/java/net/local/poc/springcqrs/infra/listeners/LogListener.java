@@ -1,0 +1,25 @@
+package net.local.poc.springcqrs.infra.listeners;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+
+import net.local.poc.springcqrs.infra.cqrs.events.InternalEvent;
+
+@Component
+public class LogListener {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Async
+    @EventListener
+    void onEvent(InternalEvent event) {
+        if (event.isSuccess()) {
+            if (logger.isInfoEnabled()) logger.info(event.toJson());
+        } else {
+            if (logger.isErrorEnabled()) logger.error(event.toJson(), event.getException());
+        }
+    }
+}
