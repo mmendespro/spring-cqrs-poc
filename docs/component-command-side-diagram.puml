@@ -1,0 +1,17 @@
+@startuml component-command-side
+
+    [CommandHandler]
+    [SelfValidator]
+    [Repository]
+
+    [Command]
+
+    [ServiceBus]
+
+    [CommandHandler] --> [Command]
+    [Command] --> [SelfValidator]
+    [CommandHandler] --> [ServiceBus]
+    [ServiceBus] --> [CommandHandler]
+    [CommandHandler] --> [Repository]
+
+@enduml

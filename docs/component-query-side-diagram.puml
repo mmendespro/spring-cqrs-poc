@@ -1,0 +1,17 @@
+@startuml component-query-side
+
+    [QueryResolver]
+    [SelfValidator]
+    [Repository]
+
+    [Query]
+
+    [ServiceBus]
+
+    [QueryResolver] --> [Query]
+    [Query] --> [SelfValidator]
+    [QueryResolver] --> [ServiceBus]
+    [ServiceBus] --> [QueryResolver]
+    [QueryResolver] --> [Repository]
+
+@enduml

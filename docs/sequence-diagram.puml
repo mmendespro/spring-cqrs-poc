@@ -1,18 +1,23 @@
-@startuml 'Diagrama de Sequencia'
+@startuml cqrs-sequence-diagram
 
-    participant UI
-    participant CreateController
-    participant ServiceBus
-    participant CreateBookHandler
-    participant LoadBookPort
-    participant SaveBookPort
-    participant Database
+    actor User
 
-    UI --> CreateController : create CreateBookCommand
-    CreateController --> ServiceBus : retrieves the right commandHandler
-    ServiceBus --> CreateBookHandler : call handler method
-    CreateBookHandler --> LoadBookPort : verify if the book exists
-    CreateBookHandler --> SaveBookPort : call to SaveBookPort
-    SaveBookPort --> Database : persist in database
+    User -> CommandHandler: submit command
+    CommandHandler -> Command: create command
+    Command -> SelfValidator: validate command
+    SelfValidator --> CommandHandler: command is valid
+    CommandHandler -> ServiceBus: dispatch command
+    ServiceBus -> CommandHandler: handle command
+    CommandHandler -> Repository: update state
+    CommandHandler --> User: command executed
+    == Query ==
+    User -> QueryResolver: submit query
+    QueryResolver -> Query: create query
+    Query -> SelfValidator: validate query
+    SelfValidator --> QueryResolver: query is valid
+    QueryResolver -> ServiceBus: dispatch query
+    ServiceBus -> QueryResolver: handle query
+    QueryResolver -> Repository: retrieve data
+    QueryResolver --> User: query executed
 
 @enduml
