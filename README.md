@@ -24,6 +24,7 @@ These instructions will get you a copy of the project up and running on your loc
 The project is divided into two main components:
  - Command Side: Responsible for handling command requests and updating the state of the system.
  - Query Side: Responsible for handling query requests and providing a read-only view of the system's state.
+ - Service Bus: With lazy load of queries resolvers and command handlers. 
 
 **Built With**
 - Spring Boot - The web framework used

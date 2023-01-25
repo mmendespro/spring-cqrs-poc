@@ -1,0 +1,18 @@
+@startuml 'Diagrama de Sequencia'
+
+    participant UI
+    participant CreateController
+    participant ServiceBus
+    participant CreateBookHandler
+    participant LoadBookPort
+    participant SaveBookPort
+    participant Database
+
+    UI --> CreateController : create CreateBookCommand
+    CreateController --> ServiceBus : retrieves the right commandHandler
+    ServiceBus --> CreateBookHandler : call handler method
+    CreateBookHandler --> LoadBookPort : verify if the book exists
+    CreateBookHandler --> SaveBookPort : call to SaveBookPort
+    SaveBookPort --> Database : persist in database
+
+@enduml
