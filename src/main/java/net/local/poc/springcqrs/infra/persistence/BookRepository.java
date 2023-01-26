@@ -1,4 +1,4 @@
-package net.local.poc.springcqrs.adapters.persistence;
+package net.local.poc.springcqrs.infra.persistence;
 
 import java.util.HashMap;
 import java.util.List;
