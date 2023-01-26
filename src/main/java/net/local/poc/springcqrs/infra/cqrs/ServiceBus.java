@@ -31,7 +31,6 @@ public class ServiceBus {
     }
 
     private void execute(InternalEvent event) {
-
         try {
             run(event);
         } catch (Exception exception) {
@@ -44,18 +43,16 @@ public class ServiceBus {
     }
 
     private void run(InternalEvent event) {
-
         var beanName = event.getOrigin().substring(0, 1).toLowerCase() + event.getOrigin().substring(1);
-
         switch (event.getType()) {
             case COMMAND: 
                 var handlerBeanName = beanName.replace("Command", "Handler");
-                Handler<Command> handler = (Handler) context.getBean(handlerBeanName);
+                Handler<Command> handler = context.getBean(handlerBeanName, Handler.class);
                 handler.handle((Command) event.getSource());
             break;
             case QUERY:
                 var resolverBeanName = beanName.replace("Query", "Resolver");
-                Resolver<Query> resolver = (Resolver) context.getBean(resolverBeanName);
+                Resolver<Query> resolver = context.getBean(resolverBeanName, Resolver.class);
                 resolver.resolve((Query) event.getSource());
             break;
             default:  throw new ServiceBusInvalidObjectException(event);
