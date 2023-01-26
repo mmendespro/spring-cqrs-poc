@@ -17,9 +17,9 @@ public class LogListener {
     @EventListener
     void onEvent(InternalEvent event) {
         if (event.isSuccess()) {
-            if (logger.isInfoEnabled()) logger.info(event.toJson());
+            logger.info(event.toJson());
         } else {
-            if (logger.isErrorEnabled()) logger.error(event.toJson(), event.getException());
+            logger.error(event.toJson(), event.getException());
         }
     }
 }
