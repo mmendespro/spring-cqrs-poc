@@ -28,7 +28,7 @@ public class UpdateBookCommand extends SelfValidating<UpdateBookCommand> impleme
         this.bookId = bookId;
         this.title = title;
         this.author = author;
-        validateSelf();
+        validateSelf(this);
     }
 
     public UUID getBookId() {

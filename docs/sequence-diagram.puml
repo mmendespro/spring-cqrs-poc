@@ -2,22 +2,21 @@
 
     actor User
 
-    User -> CommandHandler: submit command
-    CommandHandler -> Command: create command
-    Command -> SelfValidator: validate command
-    SelfValidator --> CommandHandler: command is valid
-    CommandHandler -> ServiceBus: dispatch command
-    ServiceBus -> CommandHandler: handle command
+    User -> CommandHandler ++: submit command
+    CommandHandler -> Command ++: create command
+    Command -> Command: self validate
+    Command --> CommandHandler -- : command validated 
+    CommandHandler -> ServiceBus ++: dispatch command
+    ServiceBus -> CommandHandler --: handle command
     CommandHandler -> Repository: update state
-    CommandHandler --> User: command executed
-    == Query ==
-    User -> QueryResolver: submit query
-    QueryResolver -> Query: create query
-    Query -> SelfValidator: validate query
-    SelfValidator --> QueryResolver: query is valid
-    QueryResolver -> ServiceBus: dispatch query
-    ServiceBus -> QueryResolver: handle query
-    QueryResolver -> Repository: retrieve data
-    QueryResolver --> User: query executed
+    CommandHandler --> User --: command executed
 
+    User -> QueryResolver ++ : submit query
+    QueryResolver -> Query: create query
+    Query -> Query: self validate
+    Query --> QueryResolver : query validated 
+    QueryResolver -> ServiceBus ++ : dispatch query
+    ServiceBus -> QueryResolver --: handle query
+    QueryResolver -> Repository: retrieve data
+    QueryResolver --> User -- : query executed
 @enduml

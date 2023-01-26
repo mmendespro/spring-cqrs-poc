@@ -16,7 +16,7 @@ public class DeleteBookCommand extends SelfValidating<DeleteBookCommand> impleme
 
     public DeleteBookCommand(String bookId) {
         this.bookId = bookId;
-        validateSelf();
+        validateSelf(this);
     }
 
     public UUID getBookId() {

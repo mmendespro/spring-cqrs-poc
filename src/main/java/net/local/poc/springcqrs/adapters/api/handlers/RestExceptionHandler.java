@@ -30,7 +30,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> onMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
-        var errors = List.of(new FieldValidationError(exception.getName(), exception.getValue().toString()));
+        var errors = List.of(new FieldValidationError(exception.getName(), String.valueOf(exception.getValue())));
         return getResponseEntity(INVALID_FIELD_MESSAGE, errors, BAD_REQUEST);
     }
 

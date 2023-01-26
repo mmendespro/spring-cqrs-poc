@@ -1,7 +1,5 @@
 package net.local.poc.springcqrs.infra.cqrs;
 
-import javax.annotation.processing.SupportedAnnotationTypes;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

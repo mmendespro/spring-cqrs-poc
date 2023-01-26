@@ -19,7 +19,7 @@ public class CreateBookCommand extends SelfValidating<CreateBookCommand> impleme
     public CreateBookCommand(String title, String author) {
         this.title = title;
         this.author = author;
-        validateSelf();
+        validateSelf(this);
     }
 
     public String getTitle() {
