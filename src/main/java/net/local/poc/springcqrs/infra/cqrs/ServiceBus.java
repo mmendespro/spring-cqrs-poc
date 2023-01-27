@@ -42,6 +42,7 @@ public class ServiceBus {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void run(InternalEvent event) {
         var beanName = event.getOrigin().substring(0, 1).toLowerCase() + event.getOrigin().substring(1);
         switch (event.getType()) {
