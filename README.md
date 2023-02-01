@@ -32,7 +32,7 @@ The project is divided into tree main components:
 
 **UML Component Diagram of CQRS**
 
-The diagram shows the main components of the CQRS pattern and how they interact with each other. The application layer contains the CommandHandler, QueryHandler, CommandValidator and QueryValidator classes. The domain layer contains the Command, Query, Aggregate and Repository classes. The infrastructure layer contains the CommandBus and QueryBus classes. The CommandHandler class is responsible for handling the commands and updating the state of the aggregate. The QueryHandler class is responsible for handling the queries and retrieving the data from the repository. The CommandValidator and QueryValidator classes are responsible for validating the commands and queries respectively. The CommandBus and QueryBus classes are responsible for routing the commands and queries to the appropriate handlers.
+The diagram shows the main components of the CQRS pattern and how they interact with each other.
 
 ![component-query-side.png](./docs/imgs/component-query-side.png)
 ![component-command-side.png](./docs/imgs/component-command-side.png)
